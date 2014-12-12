@@ -9,8 +9,7 @@ Steps to reproduce:
 
 ∴ cabal install --only-dependencies --enable-library-profiling
 
-∴ cabal configure --enable-library-profiling --enable-executable-profiling --enable-tests --enable-ben
-chmarks
+∴ cabal configure --enable-library-profiling --enable-executable-profiling --enable-tests --enable-benchmarks
 
 ∴ cabal build
 Building profiling-with-hashtables-0.1.0.0...
@@ -28,3 +27,13 @@ Undefined symbols for architecture x86_64:
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 ```
+
+## Works in vagrant haskell container:
+
+1. Setup and run https://github.com/darinmorrison/vagrant-haskell
+2. ssh to machine and install `apt-get install ghc-7.8.3-prof`
+3. Run `cabal update`
+4. Clone this repository
+5. Run steps above
+
+The cabal will build just fine and will profile when run with the command: `cabal run -- +RTS -p`
